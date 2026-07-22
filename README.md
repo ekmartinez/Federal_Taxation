@@ -1,2 +1,2 @@
 # Federal_Taxation
-Solving US Federal Taxes Exercises 
+Solving US Federal Tax Exercises 
