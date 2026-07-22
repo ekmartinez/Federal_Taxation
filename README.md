@@ -9,5 +9,5 @@ For the actual solving and calculation of taxes and tax planning, I use a propri
 
 ## Table of Contents
 
-1. [Introduction To Tax][01_An_Introduction_to_Tax/01_An_Introduction_to_Tax_Exercises.ipynb]
+1. [Introduction To Tax](01_An_Introduction_to_Tax/01_An_Introduction_to_Tax_Exercises.ipynb)
 
