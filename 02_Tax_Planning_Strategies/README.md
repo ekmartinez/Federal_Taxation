@@ -10,8 +10,8 @@ In this chapter we go through various `Tax Planning Strategies` and limitations 
 ## Notes
 
 ## Table of Contents
-    [Overview](#overview)
-    [Timing Strategies](#timing-strategies)
+    [Overview](#Overview)
+    [Timing Strategies](#Timing-Strategies)
         [The Timing Strategy When Tax Rates Are Constant](#the-timing-strategy-when-tax-rates-are-constant)
         [Accelerating Tax Deductions](#accelerating-tax-deductions)
         [Deferring Income](#deferring-income)
