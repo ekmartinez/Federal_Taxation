@@ -9,6 +9,25 @@ In this chapter we go through various `Tax Planning Strategies` and limitations 
 
 ## Notes
 
+## Table of Contents
+    [Overview](#overview)
+    [Timing Strategies](#timing-strategies)
+        [The Timing Strategy When Tax Rates Are Constant](#the-timing-strategy-when-tax-rates-are-constant)
+        [Accelerating Tax Deductions](#accelerating-tax-deductions)
+        [Deferring Income](#deferring-income)
+        [The Timing Strategy When Tax Rates Change](#the-timing-strategy-when-tax-rates-are-constant)
+        [Limitations to Timing Strategies](#limitations-to-timing-strategies)
+    [Income Shifting](#income-shifting)
+        [Transactions Between Family Members and Limitations](#transactions-between-family-members-and-limitations)
+        [Transactions Between Owners and Their Businesses and Limitations](#transactions-between-owners-and-their-businesses-and-limitations)
+        [The Timing Strategy When Tax Rates Are Constant](#income-shifting-across-jurisdiction-and-limitations)
+    [Conversion Strategies](#conversion-strategies)
+        [Limitations of Conversion Strategies](#limitations-of-conversion-strategies)
+    [Additional Limitations To Tax Planning Strategies: Judicially Based Doctrines](#additional-limitations-to-tax-planning-strategies:-judicially-based-doctrines)
+
+
+### Overview
+
 **Effective tax planning** - maximizes the taxpayer’s after-tax wealth while achieving the taxpayer’s nontax goals. Maximizing after-tax wealth is not necessarily the same as minimizing taxes. Specifically, maximizing after-tax wealth requires us to consider both the tax and nontax costs and benefits of alternative transactions.
 
 **Basic Tax Planning Strategies**
@@ -120,3 +139,71 @@ In order to shift income from the corporation to the owner, the corporation must
 Having the business owner rent property to the corporation or loan money to the corporation are also effective income-shifting methods because both transactions generate tax deductions for the corporation and income for the shareholder. Because corporations don’t get a tax deduction for dividends paid, paying dividends is not an effective way to shift income. 
 
 Having a corporation pay dividends actually results in “double taxation”—the profits generating the dividends are taxed first at the corporate level and then at the shareholder level.
+
+#### Income Shifting Across Jurisdictions and Limitations
+
+Taxpayers that operate in multiple jurisdictions (states, countries) also apply the income-shifting strategy (*Transfer Pricing*). Specifically, income earned in different jurisdictions—whether in the United States or abroad, and for state income tax purposes, income earned in different states—is often taxed very differently.
+
+ **Limitations of income shifting across jurisdictions:**
+ 
+ 1. Taxing authorities are fully aware of the tax benefits of strategically structuring transactions across tax borders (across countries or states). Thus, the IRS closely examines transfer pricing on international transactions. Similarly, state tax authorities scrutinize interstate transactions between related taxpayers. 
+ 2. When taxpayers locate in low-tax-rate jurisdictions to, in effect, shift income to a tax-advantaged jurisdiction, they may bear implicit taxes.
+ 3. Negative publicity from moving operations (and jobs) from the United States to a lower-tax jurisdiction may more than offset any tax benefits associated with these strategies.
+
+### Conversion Strategies
+
+Ordinary income such as salary, interest income, and business income received by individual taxpayers is taxed at their ordinary marginal tax rates. Long-term capital gains, which are gains from the sale of investment assets held longer than one year, and dividends are taxed at lower tax rates (currently a maximum of 20 percent, generally), and still other forms of income like nontaxable compensation benefits and municipal bond interest are tax-exempt.
+
+Expenses from different types of activities may also be treated very differently for tax purposes. Business expenses are generally fully tax deductible, whereas tax deductions for investments may be limited, and tax deductions for personal expenses may be completely disallowed.
+
+This understanding forms the basis for the conversion strategy—recasting income and expenses to receive the most favorable tax treatment.
+
+ **Examples of conversion strategy:**
+
+* Income and deductions with differing character
+* Investments generating income subject to differing tax rates 
+* Expenses with differing deductibility
+* Compensation resulting in taxable versus nontaxable income
+
+To analyze the benefits of the conversion strategy, you often compare the after-tax rates of return of alternative investments rather than the before-tax rates of return. Given a stationary marginal tax rate, you can calculate an investment’s after-tax rate of return as follows:
+
+`After-Tax Rate of Return = Before-Tax Rate of Return x (1 - Marginal Tax Rate)`
+
+
+When taxpayers hold investments for more than a year, they potentially receive benefits from combining the timing strategy and the conversion strategy:
+
+1. They may be able to defer recognizing gains on the assets until they sell them—the longer the deferral period, the lower the present value of the tax when taxpayers ultimately sell the assets. 
+2. They may pay taxes on the gains at preferential rates.
+
+To compare investments with differing time horizons, taxpayers use the annualized after-tax rate of 1/n return. In general, the after-tax rate of return on any investment is (F V /I ) − 1, where FV is the future value after taxes, I is the investment (in after-tax dollars), and n is the number of investment 18 periods.
+
+#### Limitations of Conversion Strategies
+
+The Internal
+Revenue Code itself also contains several specific provisions that prevent the taxpayer from changing the nature of expenses, income, or activities to a more tax-advantaged status, including:
+
+* Depreciation recapture rules
+* Luxury auto depreciation rules
+* Implicit taxes may reduce or eliminate the advantages of tax-preferred investments
+
+### Additional Limitations to Tax Planning Strategies: Judicially Based Doctrines
+
+The IRS has several other doctrines at its disposal for situations in which it expects taxpayer abuse. These doctrines have developed from court decisions and apply across a wide variety of transactions and planning strategies:
+
+* **The Business Purpose Doctrine** - Allows the IRS to challenge and disallow business expenses for transactions with no underlying business motivation.
+
+* **The Step-transaction Doctrine** - Allows the IRS to collapse a series of related transactions into one transaction to determine the tax consequences of the transaction.
+
+* **The substance-Over-Form Doctrine** - Allows the IRS to consider the transaction’s substance regardless of its form and, where appropriate, to reclassify the transaction according to its substance. 
+
+* **The Economic Substance Doctrine** - Requires transactions to meet two criteria to obtain tax benefits. 
+
+    1. A transaction must meaningfully change a taxpayer’s economic position (excluding any federal income tax effects).
+    2. The taxpayer must have a substantial purpose (other than tax avoidance) for the transaction.
+
+### Tax Avoidance Versus Tax Evasion
+
+**Tax avoidance** has long been endorsed by the courts and even Congress (Ex: Tax Free Muni Bonds). Likewise, the courts have often made it quite clear that taxpayers are under no moral obligation to pay more taxes than required by law (*Comm'r vs Newman*).
+
+**Tax Evasion**  The willful attempt to defraud the government—falls outside the confines of legal tax avoidance and thus may land the perpetrator within the confines of a federal prison.
+

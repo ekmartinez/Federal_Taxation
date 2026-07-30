@@ -9,6 +9,6 @@ For the actual solving and calculation of taxes and tax planning, I use a propri
 
 ## Table of Contents
 
-1. [Introduction To Tax](01_An_Introduction_to_Tax/README.md)
-2. [Tax Planning Strategies](02_Tax_Planning_Strategies/README.md)
+1. [Introduction To Tax](01_An_Introduction_to_Tax/)
+2. [Tax Planning Strategies](02_Tax_Planning_Strategies/)
 
