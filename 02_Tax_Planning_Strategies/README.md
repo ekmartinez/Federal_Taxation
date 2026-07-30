@@ -10,21 +10,20 @@ In this chapter we go through various `Tax Planning Strategies` and limitations 
 ## Notes
 
 ## Table of Contents
-    [Overview](#Overview)
-    [Timing Strategies](#Timing-Strategies)
-        [The Timing Strategy When Tax Rates Are Constant](#the-timing-strategy-when-tax-rates-are-constant)
-        [Accelerating Tax Deductions](#accelerating-tax-deductions)
-        [Deferring Income](#deferring-income)
-        [The Timing Strategy When Tax Rates Change](#the-timing-strategy-when-tax-rates-are-constant)
-        [Limitations to Timing Strategies](#limitations-to-timing-strategies)
-    [Income Shifting](#income-shifting)
-        [Transactions Between Family Members and Limitations](#transactions-between-family-members-and-limitations)
-        [Transactions Between Owners and Their Businesses and Limitations](#transactions-between-owners-and-their-businesses-and-limitations)
-        [The Timing Strategy When Tax Rates Are Constant](#income-shifting-across-jurisdiction-and-limitations)
-    [Conversion Strategies](#conversion-strategies)
-        [Limitations of Conversion Strategies](#limitations-of-conversion-strategies)
-    [Additional Limitations To Tax Planning Strategies: Judicially Based Doctrines](#additional-limitations-to-tax-planning-strategies:-judicially-based-doctrines)
-
+- [Overview](#overview)
+- [Timing Strategies](#timing-strategies)
+    - [The Timing Strategy When Tax Rates Are Constant](#the-timing-strategy-when-tax-rates-are-constant)
+    - [Accelerating Tax Deductions](#accelerating-tax-deductions)
+    - [Deferring Income](#deferring-income)
+    - [The Timing Strategy When Tax Rates Change](#the-timing-strategy-when-tax-rates-change)
+    - [Limitations to Timing Strategies](#limitations-to-timing-strategies)
+- [Income Shifting](#income-shifting)
+    - [Transactions Between Family Members and Limitations](#transactions-between-family-members-and-limitations)
+    - [Transactions Between Owners and Their Businesses and Limitations](#transactions-between-owners-and-their-businesses-and-limitations)
+    - [Income Shifting Across Jurisdiction and Limitations](#income-shifting-across-jurisdiction-and-limitations)
+- [Conversion Strategies](#conversion-strategies)
+    - [Limitations of Conversion Strategies](#limitations-of-conversion-strategies)
+- [Additional Limitations To Tax Planning Strategies: Judicially Based Doctrines](#additional-limitations-to-tax-planning-strategies-judicially-based-doctrines)
 
 ### Overview
 
