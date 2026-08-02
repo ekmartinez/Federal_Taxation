@@ -5,7 +5,7 @@ In this chapter we go through various `Tax Planning Strategies` and limitations 
 ## Examples & Excercises
 
 * [Examples](02_Tax_Planning_Strategies_Examples.ipynb)
-* [Exercises](02_Tax_Planning_Stratgies_Exercises.ipynb)
+* [Exercises](02_Tax_Planning_Strategies_Exercises.ipynb)
 
 ## Notes
 
