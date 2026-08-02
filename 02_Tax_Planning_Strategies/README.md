@@ -44,7 +44,7 @@ When income is taxed or an expense is deducted affects the associated “real”
 
 The implication of the time value of money for tax planning is that the timing of a cash inflow or a cash outflow affects the present value of the income or expense.
 
-** Present Value of Money**
+**Present Value of Money**
 
 * The concept of present value—also known as the time value of money—states that 1 dollar received today is worth more than 1 dollar in the future.
 * The implication of the time value of money for tax planning is that the timing of a cash inflow or a cash outflow affects the present value of the income or expense.
