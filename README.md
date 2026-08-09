@@ -11,4 +11,5 @@ For the actual solving and calculation of taxes and tax planning, I use a propri
 
 1. [Introduction To Tax](01_An_Introduction_to_Tax/)
 2. [Tax Planning Strategies](02_Tax_Planning_Strategies/)
+3. [Individual Income Tax Overview, Dependents, and Filing Status](03_Individual_Income_Tax_Overview_Dependents_and_Filing_status/)
 
