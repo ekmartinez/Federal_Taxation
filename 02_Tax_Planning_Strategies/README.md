@@ -1,6 +1,9 @@
-# Tax Planning Strategies & Limitations — Notes
+# Tax Planning Strategies & Limitations
 
-*Personal notes based on my textbook reading, rewritten in my own words.*
+## Examples & Excercises
+
+- [Examples](02_Tax_Planning_Strategies_Examples.ipynb)
+- [Exercises](02_Tax_Planning_Strategies_Exercises.ipynb)
 
 ## Table of Contents
 - [Overview](#overview)

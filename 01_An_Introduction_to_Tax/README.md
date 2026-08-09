@@ -1,4 +1,4 @@
-# Introduction to Tax — Notes
+# Introduction to Tax
 
 ## Examples & Excercises
 
