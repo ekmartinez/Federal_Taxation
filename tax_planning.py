@@ -24,13 +24,13 @@ class OrdinaryTax:
         # 2026 Schedules
         # SNG: Single
         # MFJ: Married Filling Jointly
-        # SSS: Surving Spouse
+        # QSS: Qualifying Surving Spouse
         self.schedules = {
             "SNG": [[.10, .12, .22, .24, .32, .35, .37], 
                     [12400, 50400, 105700, 201775, 256225, 640600]],
             "MFJ": [[.10, .12, .22, .24, .32, .35, .37], 
                     [24800, 100800, 211400, 403550, 512450, 768700]],
-            "SSS": [[.10, .12, .22, .24, .32, .35, .37], 
+            "QSS": [[.10, .12, .22, .24, .32, .35, .37], 
                     [24800, 100800, 211400, 403550, 512450, 768700]]
             }
         
@@ -78,6 +78,37 @@ class OrdinaryTax:
             tax += (self.taxable_income - data[1][5]) * data[0][6]
 
         return tax
+
+class CapitalGains(OrdinaryTax):
+    def __init__(self, classification, taxable_income, capital_gains):
+        super().__init__(classification, taxable_income)
+        self.capital_gains = capital_gains
+        self.tax_rates = [0, .15, .20]
+        self.limits = {
+            "SNG": [0, 49450, 545500], # 2026 Single
+            "MFJ": [0, 98900, 613700], # 2026 Married Filing Jointly
+            "QSS": [0, 98900, 613700], # 2026 Qualifiying Surviving Spouse
+            "HHD": [0, 66200, 579600], # 2026 Head of Household
+            "MFS": [0, 49450, 306850], # 2026 Married Filing Separately
+            "TAE": [0, 3300, 16250], # 2026 Trust and Estates
+        }
+
+    def capital_gains_tax(self):
+        if self.classification == "SNG":
+            if self.taxable_income > self.limits["SNG"][0] and self.taxable_income <= self.limits["SNG"][1]:
+                return 0 
+            elif self.taxable_income > self.limits["SNG"][1] and self.taxable_income <= self.limits["SNG"][2]:
+                return self.capital_gains * self.tax_rates[1]
+            elif self.taxable_income > self.limits["SNG"][2]:
+                return self.capital_gains * self.tax_rates[2]
+        elif self.classification == "MFJ":
+            if self.taxable_income > self.limits["MFJ"][0] and self.taxable_income <= self.limits["MFJ"][1]:
+                return 0 
+            elif self.taxable_income > self.limits["MFJ"][1] and self.taxable_income <= self.limits["MFJ"][2]:
+                return self.capital_gains * self.tax_rates[1]
+            elif self.taxable_income > self.limits["MFJ"][2]:
+                return self.capital_gains * self.tax_rates[2]
+
 
 class Planning(OrdinaryTax):
     def __init__(self, classification, taxable_income, non_taxable_income=0, change=0):
@@ -133,3 +164,11 @@ def timming_strategy(cat, amount, cost, rr, data):
         print(f"Present Value of {"tax cost" if cat == "income" else "tax savings"}: ${-pv:,.0f}")
         print(f"After-tax {"cash flow" if cat == "income" else "cost"}: ${amount + pv:,.0f}")
         print(f"{"-"*33}\n")
+
+if __name__ == "__main__":
+    capital_gains = 5000
+    taxable_income = 96400
+    status = "MFJ"
+
+    cap = CapitalGains(status, taxable_income, capital_gains).capital_gains_tax()
+    print(cap)
