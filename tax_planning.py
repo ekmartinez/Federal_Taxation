@@ -31,7 +31,9 @@ class OrdinaryTax:
             "MFJ": [[.10, .12, .22, .24, .32, .35, .37], 
                     [24800, 100800, 211400, 403550, 512450, 768700]],
             "QSS": [[.10, .12, .22, .24, .32, .35, .37], 
-                    [24800, 100800, 211400, 403550, 512450, 768700]]
+                    [24800, 100800, 211400, 403550, 512450, 768700]],
+            "HOH": [[.10, .12, .22, .24, .32, .35, .37], 
+                    [17700, 67450, 105700, 201750, 256200, 640600]]
             }
         
         return self.schedules[self.classification]
@@ -88,9 +90,9 @@ class CapitalGains(OrdinaryTax):
             "SNG": [0, 49450, 545500], # 2026 Single
             "MFJ": [0, 98900, 613700], # 2026 Married Filing Jointly
             "QSS": [0, 98900, 613700], # 2026 Qualifiying Surviving Spouse
-            "HHD": [0, 66200, 579600], # 2026 Head of Household
+            "HOH": [0, 66200, 579600], # 2026 Head of Household
             "MFS": [0, 49450, 306850], # 2026 Married Filing Separately
-            "TAE": [0, 3300, 16250], # 2026 Trust and Estates
+            "TAE": [0, 3300, 16250],   # 2026 Trust and Estates
         }
 
     def capital_gains_tax(self):
@@ -108,7 +110,13 @@ class CapitalGains(OrdinaryTax):
                 return self.capital_gains * self.tax_rates[1]
             elif self.taxable_income > self.limits["MFJ"][2]:
                 return self.capital_gains * self.tax_rates[2]
-
+        elif self.classification == "HOH":
+            if self.taxable_income > self.limits["HOH"][0] and self.taxable_income <= self.limits["HOH"][1]:
+                return 0 
+            elif self.taxable_income > self.limits["HOH"][1] and self.taxable_income <= self.limits["HOH"][2]:
+                return self.capital_gains * self.tax_rates[1]
+            elif self.taxable_income > self.limits["HOH"][2]:
+                return self.capital_gains * self.tax_rates[2]
 
 class Planning(OrdinaryTax):
     def __init__(self, classification, taxable_income, non_taxable_income=0, change=0):
@@ -139,31 +147,7 @@ class Planning(OrdinaryTax):
         total_income = self.taxable_income + self.non_taxable_income 
         return total_tax / total_income
 
-def timming_strategy(cat, amount, cost, rr, data):
-    """ Returns the after-tax cost / cash-flow
-    cat: category: income, expense
-    amount: before tax amount
-    cost: when a gain is needed, else N/A
-    rr: rate of return
-    data: a dictionary holding each scenario:
-        mtr: Marginal Tax Rate
-        scenarios = {
-            "Scenario_1": [0, mtr] -> 0: Current year, mtr
-            "Scenario_2": [1, mtr] -> 1: Next year, mtr
-            "on so on...
-        }
-    """
 
-    for k, v in data.items():
-        print(f"{k}\n{"-"*33}")
-        print(f"{"Income:" if cat == "income" else "Deduction"} ${amount:,.0f}")
-        print(f"Marginal Tax Rate: {v[1]*100:.0f}%")
-        tax = RPNEngine(f"{v[1]} {amount} {cost} - *").safe_evaluate().value
-        print(f"Tax {"on gain" if cat == "income" else "savings"}: ${tax:,.0f}")
-        pv = RPNEngine(f"{rr} {v[0]} {0} {tax} pv").safe_evaluate().value
-        print(f"Present Value of {"tax cost" if cat == "income" else "tax savings"}: ${-pv:,.0f}")
-        print(f"After-tax {"cash flow" if cat == "income" else "cost"}: ${amount + pv:,.0f}")
-        print(f"{"-"*33}\n")
 
 if __name__ == "__main__":
     capital_gains = 5000

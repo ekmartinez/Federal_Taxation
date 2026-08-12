@@ -1,0 +1,152 @@
+                 ┌─────────────────────────┐
+                 │      GROSS INCOME       │
+                 │                         │
+                 │ Wages                   │
+                 │ Interest                │
+                 │ Dividends               │
+                 │ Capital gains           │
+                 │ Other taxable income    │
+                 └────────────┬────────────┘
+                              │
+                              ▼
+                 ┌─────────────────────────┐
+                 │   ABOVE-THE-LINE        │
+                 │      DEDUCTIONS         │
+                 │                         │
+                 │ Gross income            │
+                 │       −                 │
+                 │ Adjustments             │
+                 └────────────┬────────────┘
+                              │
+                              ▼
+                 ┌─────────────────────────┐
+                 │           AGI           │
+                 └────────────┬────────────┘
+                              │
+                              ▼
+                 ┌─────────────────────────┐
+                 │   BELOW-THE-LINE        │
+                 │      DEDUCTION          │
+                 │                         │
+                 │ Standard deduction      │
+                 │           OR            │
+                 │ Itemized deductions     │
+                 └────────────┬────────────┘
+                              │
+                              ▼
+                 ┌─────────────────────────┐
+                 │     TAXABLE INCOME      │
+                 │                         │
+                 │ ┌─────────────────────┐ │
+                 │ │ Ordinary income     │ │
+                 │ │                     │ │
+                 │ │ +                   │ │
+                 │ │                     │ │
+                 │ │ Qualified dividends │ │
+                 │ │ +                   │ │
+                 │ │ Net LTCG            │ │
+                 │ └─────────────────────┘ │
+                 └────────────┬────────────┘
+                              │
+                              ▼
+              ┌────────────────────────────────┐
+              │       CALCULATE INCOME TAX     │
+              └───────────────┬────────────────┘
+                              │
+               ┌──────────────┴──────────────┐
+               │                             │
+               ▼                             ▼
+      ┌───────────────────┐       ┌────────────────────────┐
+      │ ORDINARY INCOME   │       │ QUALIFIED DIVIDENDS    │
+      │                   │       │        +               │
+      │ Ordinary tax      │       │ NET LONG-TERM          │
+      │ brackets          │       │ CAPITAL GAINS          │
+      │                   │       │                        │
+      │ 10%, 12%, 22%,    │       │ Preferential rates:    │
+      │ 24%, 32%, 35%, 37%│       │ 0%, 15%, 20%           │
+      └─────────┬─────────┘       └───────────┬────────────┘
+                │                             │
+                └──────────────┬──────────────┘
+                               ▼
+                  ┌─────────────────────────┐
+                  │      TOTAL TAX          │
+                  │    BEFORE CREDITS       │
+                  └────────────┬────────────┘
+                               │
+                               ▼
+                  ┌─────────────────────────┐
+                  │   NONREFUNDABLE         │
+                  │       CREDITS           │
+                  │                         │
+                  │ Child Tax Credit        │
+                  │ Education credits       │
+                  │ Foreign tax credit      │
+                  │ etc.                    │
+                  └────────────┬────────────┘
+                               │
+                               ▼
+                  ┌─────────────────────────┐
+                  │     TAX AFTER           │
+                  │     CREDITS             │
+                  └────────────┬────────────┘
+                               │
+                               ▼
+                  ┌─────────────────────────┐
+                  │    REFUNDABLE CREDITS   │
+                  │                         │
+                  │ EITC                    │
+                  │ Additional CTC          │
+                  │ Other refundable credits│
+                  └────────────┬────────────┘
+                               │
+                               ▼
+                  ┌─────────────────────────┐
+                  │       TAX LIABILITY     │
+                  └────────────┬────────────┘
+                               │
+                               ▼
+                  ┌─────────────────────────┐
+                  │       PAYMENTS          │
+                  │                         │
+                  │ Federal withholding     │
+                  │ Estimated payments      │
+                  │ Other payments          │
+                  └────────────┬────────────┘
+                               │
+                               ▼
+                         ┌─────┴─────┐
+                         │           │
+                    Payments >    Payments <
+                    Tax liability  Tax liability
+                         │           │
+                         ▼           ▼
+                      REFUND      TAX DUE
+
+
+
+                 INCOME STAGE
+                      │
+                      ▼
+        Wages ───────────────┐
+        Interest ────────────┤
+        Dividends ───────────┤──► GROSS INCOME
+        Capital gains ───────┘
+                      │
+                      ▼
+             AGI / DEDUCTIONS
+                      │
+                      ▼
+               TAXABLE INCOME
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+        ORDINARY           QD + LTCG
+         INCOME                │
+             │                 │
+             ▼                 ▼
+       Ordinary rates    Preferential rates
+                          0% / 15% / 20%
+             │                 │
+             └────────┬────────┘
+                      ▼
+                 TOTAL TAX
