@@ -120,11 +120,47 @@ class PreferentialIncomeTax(IncomeTax):
         return [capital_gains_rate, capital_gains_tax]
 
 class NetCapitalGainLoss:
-    def __init__(self, st_gains, st_losses, lt_gains, lt_losses):
-        self.st_gains = st_gains
-        self.st_losses = st_losses
-        self.lt_gains = lt_gains
-        self.lt_losses = lt_losses
+    # TODO: Raise error if losses are not negative
+    def __init__(self, st_cap_gains, st_cap_losses, lt_cap_gains, lt_cap_losses):
+        self.st_cap_gains = st_cap_gains
+        self.st_cap_losses = st_cap_losses
+        self.lt_cap_gains = lt_cap_gains
+        self.lt_cap_losses = lt_cap_losses
+
+        self.net = {
+            "short_term": [],
+            "long_term": [],
+            "net_capital_gain_loss": []
+        }
+    
+    def netting_process(self):
+
+        net_short_term_capital_gain_loss = self.st_cap_gains + self.st_cap_losses
+        if net_short_term_capital_gain_loss > 0:
+            self.net["short_term"].append("Net Short-Term Capital Gain")
+        else:
+            self.net["short_term"].append("Net Short-Term Capital loss")
+        self.net["short_term"].append(net_short_term_capital_gain_loss)
+
+        net_long_term_capital_gain_loss = self.lt_cap_gains + self.lt_cap_losses
+        if net_long_term_capital_gain_loss > 0:
+            self.net["long_term"].append("Net Long-Term Capital Gain")
+        else:
+            self.net["long_term"].append("Net Long-Term Capital loss")
+        self.net["long_term"].append(net_long_term_capital_gain_loss)
+
+        
+
+        """
+        {'short_term': ['Net Short-Term Capital Gain', 300],
+        'long_term': ['Net Long-Term Capital Gain', 4500]}
+        """
+
+
+        return self.net
+        
+
+
 
 class TaxCredits(IncomeTax):
     def __init__(self, status, age, gross_income, credits, prepayments):
