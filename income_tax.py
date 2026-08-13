@@ -135,6 +135,7 @@ class NetCapitalGainLoss:
     
     def netting_process(self):
 
+        # Net Short-Term Capital Gain /Loss
         net_short_term_capital_gain_loss = self.st_cap_gains + self.st_cap_losses
         if net_short_term_capital_gain_loss > 0:
             self.net["short_term"].append("Net Short-Term Capital Gain")
@@ -142,6 +143,7 @@ class NetCapitalGainLoss:
             self.net["short_term"].append("Net Short-Term Capital loss")
         self.net["short_term"].append(net_short_term_capital_gain_loss)
 
+        # Net Long-Term Capital Gain /Loss
         net_long_term_capital_gain_loss = self.lt_cap_gains + self.lt_cap_losses
         if net_long_term_capital_gain_loss > 0:
             self.net["long_term"].append("Net Long-Term Capital Gain")
@@ -192,11 +194,16 @@ class TaxMetrics(IncomeTax):
         pass
 
 if __name__ == "__main__":
-    status = "HOH"
-    age = 30
-    ordinary_income = 106000
-    capital_gains = 4000
-    itemized = 0
-    # taxes = OrdinaryIncomeTax(status, age, ordinary_income, itemized).calculate_tax()
-    # taxes = PreferentialIncomeTax(status, age, ordinary_income, 0, capital_gains).calculate_tax()
-    # print(taxes)
+
+    st_cap_gains = 1200
+    st_cap_losses = -900
+    lt_cap_gains = 5000
+    lt_cap_losses = -500
+
+    net_st = st_cap_gains + st_cap_losses
+    nt_lt = lt_cap_gains + lt_cap_losses
+
+    
+    
+
+    print()
