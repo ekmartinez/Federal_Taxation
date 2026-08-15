@@ -120,49 +120,64 @@ class PreferentialIncomeTax(IncomeTax):
         return [capital_gains_rate, capital_gains_tax]
 
 class NetCapitalGainLoss:
-    # TODO: Raise error if losses are not negative
-    def __init__(self, st_cap_gains, st_cap_losses, lt_cap_gains, lt_cap_losses):
-        self.st_cap_gains = st_cap_gains
-        self.st_cap_losses = st_cap_losses
-        self.lt_cap_gains = lt_cap_gains
-        self.lt_cap_losses = lt_cap_losses
+    """
+    Performs the netting process for capital gains and losses per
+    US Federal Taxation rules (short-term vs. long-term).
 
+    Convention: gains are entered as positive numbers (or 0),
+    losses are entered as negative numbers (or 0).
+    """
+
+    def __init__(self, st_gains, st_losses, lt_gains, lt_losses):
+        if st_losses > 0 or lt_losses > 0:
+            raise ValueError("Losses must be entered as negative numbers (or zero).")
+        if st_gains < 0 or lt_gains < 0:
+            raise ValueError("Gains must be entered as positive numbers (or zero).")
+
+        self.st_gains = st_gains
+        self.st_losses = st_losses
+        self.lt_gains = lt_gains
+        self.lt_losses = lt_losses
         self.net = {
-            "short_term": [],
-            "long_term": [],
-            "net_capital_gain_loss": []
+            "Net ST": 0,
+            "Net LT": 0,
+            "Overall": 0,
+            "Character": ""
         }
-    
+
     def netting_process(self):
+        net_st = self.st_gains + self.st_losses
+        net_lt = self.lt_gains + self.lt_losses
+        overall = net_st + net_lt
 
-        # Net Short-Term Capital Gain /Loss
-        net_short_term_capital_gain_loss = self.st_cap_gains + self.st_cap_losses
-        if net_short_term_capital_gain_loss > 0:
-            self.net["short_term"].append("Net Short-Term Capital Gain")
+        self.net["Net ST"] = net_st
+        self.net["Net LT"] = net_lt
+        self.net["Overall"] = overall
+
+        if net_st == 0 and net_lt == 0:
+            self.net["Character"] = "None"
+        elif net_st >= 0 and net_lt >= 0:
+            # Same sign (or one side is exactly zero): nothing offsets,
+            # both sides keep their own character.
+            self.net["Character"] = "Net Short-term and Long-term Capital Gain"
+        elif net_st <= 0 and net_lt <= 0:
+            self.net["Character"] = "Net Short-term and Long-term Capital Loss"
         else:
-            self.net["short_term"].append("Net Short-Term Capital loss")
-        self.net["short_term"].append(net_short_term_capital_gain_loss)
-
-        # Net Long-Term Capital Gain /Loss
-        net_long_term_capital_gain_loss = self.lt_cap_gains + self.lt_cap_losses
-        if net_long_term_capital_gain_loss > 0:
-            self.net["long_term"].append("Net Long-Term Capital Gain")
-        else:
-            self.net["long_term"].append("Net Long-Term Capital loss")
-        self.net["long_term"].append(net_long_term_capital_gain_loss)
-
-        
-
-        """
-        {'short_term': ['Net Short-Term Capital Gain', 300],
-        'long_term': ['Net Long-Term Capital Gain', 4500]}
-        """
-
+            # Opposite signs: whichever side has the bigger magnitude
+            # determines the overall character. overall's own sign
+            # already tells us who won, so no extra abs() comparison needed.
+            if overall == 0:
+                self.net["Character"] = "None"
+            elif overall > 0:
+                self.net["Character"] = (
+                    "Net Short-term Capital Gain" if net_st > 0 else "Net Long-term Capital Gain"
+                )
+            else:
+                self.net["Character"] = (
+                    "Net Short-term Capital Loss" if net_st < 0 else "Net Long-term Capital Loss"
+                )
 
         return self.net
-        
-
-
 
 class TaxCredits(IncomeTax):
     def __init__(self, status, age, gross_income, credits, prepayments):

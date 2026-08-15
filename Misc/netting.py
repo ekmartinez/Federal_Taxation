@@ -57,3 +57,12 @@ class NetCapitalGainLoss:
                 )
 
         return self.net
+
+if __name__ == "__main__":
+    lt_cap_gains = 3000
+    lt_cap_losses = -300
+    st_cap_gains = 200
+    st_cap_losses = -1900
+    net = NetCapitalGainLoss(st_cap_gains, st_cap_losses, lt_cap_gains, lt_cap_losses).netting_process()
+    for k, v in net.items():
+        print(f"{k}: {v}")
