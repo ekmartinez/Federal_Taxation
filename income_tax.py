@@ -1,4 +1,6 @@
+import calendar
 import pandas as pd
+from datetime import date
 
 class IncomeTax:
     def __init__(self, status, age, gross_income):
@@ -196,6 +198,19 @@ class TaxCredits(IncomeTax):
     def tax_prepayments(self):
         return self.prepayments
 
+class TaxMetrics(IncomeTax):
+    def __init__(self, income, non_taxable_income, change):
+        super.__init__(income)
+        self.non_taxable_income = non_taxable_income
+        self.change = change
+
+    def marginal_rate(self):
+        pass
+    def average_rate(self):
+        pass
+    def effective_rate(self):
+        pass
+
 class IncomeTaxSummary:
     def __init__(
             self,
@@ -265,19 +280,24 @@ class IncomeTaxSummary:
 
         return df
 
-class TaxMetrics(IncomeTax):
-    def __init__(self, income, non_taxable_income, change):
-        super.__init__(income)
-        self.non_taxable_income = non_taxable_income
-        self.change = change
+class QualifyingChildResidencyTest:
+    def __init__(self, start_date: date, end_date: date):
+        if start_date > end_date:
+            raise ValueError("Start date most not be after end date.")
 
-    def marginal_rate(self):
-        pass
-    def average_rate(self):
-        pass
-    def effective_rate(self):
-        pass
+        if start_date.year != end_date.year:
+            raise ValueError("Residency period must be within a single tax year")
+        
+        self.start_date = start_date
+        self.end_date = end_date
+        self.tax_year = start_date.year
 
+    def test(self) -> bool:
+        # Both the start and end dates are included in the residency period.
+        days_lived_with_taxpayer = (self.end_date - self.start_date).days + 1
+        days_in_tax_year = 366 if calendar.isleap(self.tax_year) else 365
+        return days_lived_with_taxpayer > days_in_tax_year / 2
 
 if __name__ == "__main__":
     pass
+    
