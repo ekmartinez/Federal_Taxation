@@ -43,21 +43,21 @@ class IncomeTax:
         }
 
 class OrdinaryIncomeTax(IncomeTax):
-    def __init__(self, status, age, gross_income, adjustments, itemized):
+    def __init__(self, status, age, gross_income, adjustments, itemized, qbi_deduction):
         super().__init__(status, age, gross_income)
         self.adjustments = adjustments
         self.itemized = itemized
+        self.qbi_deduction = qbi_deduction
         self.rates = self.ordinary["rates"]
         self.schedule = self.ordinary[self.status]
 
         self.from_agi_deduction = max(self.itemized, self.standard_deduction[self.status])
 
     def calculate_tax(self):
-        qbi_deduction = 0 # Module is pending
         tax_rate = 0
         ordinary_tax = 0
         adjusted_gross_income = self.gross_income - self.adjustments
-        taxable_income = adjusted_gross_income - self.from_agi_deduction - qbi_deduction
+        taxable_income = adjusted_gross_income - self.from_agi_deduction - self.qbi_deduction
 
         data_return = {
             "status": self.status,
@@ -67,12 +67,12 @@ class OrdinaryIncomeTax(IncomeTax):
             "standard_deduction": self.standard_deduction[self.status], # type: ignore
             "itemized_deduction": self.itemized,
             "deduction": self.from_agi_deduction,
-            "qbi_deduction": qbi_deduction,
+            "qbi_deduction": self.qbi_deduction,
             "marginal_tax_rate": tax_rate,
             "ordinary_tax": ordinary_tax,
         }
         data_return["adjusted_gross_income"] = self.gross_income - self.adjustments
-        data_return["taxable_income"] = data_return["adjusted_gross_income"] - self.from_agi_deduction - qbi_deduction
+        data_return["taxable_income"] = data_return["adjusted_gross_income"] - self.from_agi_deduction - self.qbi_deduction
         
         for k, v in enumerate(self.schedule[0]):
             if taxable_income < self.schedule[0][0]:
