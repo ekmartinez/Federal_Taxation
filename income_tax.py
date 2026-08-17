@@ -1,3 +1,5 @@
+import pandas as pd
+
 class IncomeTax:
     def __init__(self, status, age, gross_income):
         self.status = status
@@ -194,6 +196,74 @@ class TaxCredits(IncomeTax):
     def tax_prepayments(self):
         return self.prepayments
 
+class IncomeTaxSummary:
+    def __init__(
+            self,
+            gross_income, 
+            adjustments,     # Adjustments to arrive at agi
+            deduction,       # From AGI deduction      
+            qbi_deduction,   # From AGI deduction
+            capital_gains, 
+            ordinary_tax, 
+            capital_gains_tax, 
+            credits, 
+            prepayments
+            ):
+            self.gross_income = gross_income
+            self.adjustments = adjustments
+            self.deduction = deduction
+            self.qbi_deduction = qbi_deduction
+            self.capital_gains = capital_gains
+            self.ordinary_tax = ordinary_tax
+            self.capital_gains_tax = capital_gains_tax
+            self.credits = credits
+            self.prepayments = prepayments
+
+    def income_tax_summary(self):
+    
+        self.gross_income += self.capital_gains
+        adjusted_gross_income = self.gross_income - self.adjustments
+        taxable_income = adjusted_gross_income - self.deduction
+        taxable_ordinary_income = taxable_income - self.capital_gains
+        total_tax = self.ordinary_tax + self.capital_gains_tax
+        tax_due_refund = total_tax + self.credits + self.prepayments
+        results = "Tax due" if tax_due_refund >= 0 else "Tax refund"
+
+        df = pd.DataFrame([
+                ["Gross income", self.gross_income],
+                ["Adjustments", self.adjustments],
+                [""],
+                ["Adjusted gross income", adjusted_gross_income],
+                ["From AGI deductions:"],
+                ["Standard / itemized deduction", self.deduction],
+                ["QBI deduction", self.qbi_deduction],
+                [""],
+                ["Taxable income", taxable_income],
+                [""],
+                ["Taxable ordinary income", taxable_ordinary_income],
+                ["Taxable capital gains", self.capital_gains],
+                [""],
+                ["Ordinary income tax", self.ordinary_tax],
+                ["Capital gains tax", self.capital_gains_tax],
+                [""],
+                ["Tax before credits", total_tax],
+                [""],
+                ["Credits", self.credits],
+                ["Prepayments", self.prepayments],
+                [""],
+                [results, tax_due_refund],
+            ], columns=["", ""])
+
+        def format_number(x):
+            if pd.isna(x):
+                return ""
+            if x < 0:
+                return f"({abs(x):,.0f})"
+            return f"{x:,.0f}"
+        amount_col = df.iloc[:, 1].astype(object).apply(format_number)
+        df.isetitem(1, amount_col) # type: ignore
+
+        return df
 
 class TaxMetrics(IncomeTax):
     def __init__(self, income, non_taxable_income, change):
@@ -208,17 +278,6 @@ class TaxMetrics(IncomeTax):
     def effective_rate(self):
         pass
 
+
 if __name__ == "__main__":
-
-    st_cap_gains = 1200
-    st_cap_losses = -900
-    lt_cap_gains = 5000
-    lt_cap_losses = -500
-
-    net_st = st_cap_gains + st_cap_losses
-    nt_lt = lt_cap_gains + lt_cap_losses
-
-    
-    
-
-    print()
+    pass
