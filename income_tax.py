@@ -221,13 +221,14 @@ class DependencyTest:
 
         return days_lived_with_taxpayer > days_in_tax_year / 2
     
-    def core_dependency_test(self, citizenship_residency_test, joint_return_test):
-        core_dependency = all([citizenship_residency_test, joint_return_test])
+    def core_dependency_test(self, dependent_taxpayer_test, citizenship_residency_test, joint_return_test):
+        core_dependency = all([dependent_taxpayer_test, citizenship_residency_test, joint_return_test])
 
         return [core_dependency, f"""
 Core Dependency Tests:
-    1) Citizen or Resident Test:       {citizenship_residency_test}
-    2) Joint Return Test:              {joint_return_test}
+    1) Dependent Taxpayer Test         {dependent_taxpayer_test}
+    2) Citizen or Resident Test:       {citizenship_residency_test}
+    3) Joint Return Test:              {joint_return_test}
 Core Dependency Test Result:           {core_dependency}"""]
         
     def qualifying_child_test(self, relationship_test, age_test, residence_test, half_support_test):
@@ -249,7 +250,7 @@ Qualifying Relative Tests:
     1) Relationship Test:              {relationship_test}
     2) Support Test:                   {support_test}
     3) Gross Income Test:              {gross_income_test}
-Qualifying Relative Test Results:      {qualifying_relative}"""]
+Qualifying Relative Test Result:       {qualifying_relative}"""]
 
 class IncomeTaxSummary:
     def __init__(
