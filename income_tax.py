@@ -235,7 +235,7 @@ Core Dependency Results:               {core_dependency}"""]
 
         return [qualifying_child, f"""
 Qualifying Child Tests:
-    1) Citizenship Residency Test:     {relationship_test}
+    1) Relationship Test:              {relationship_test}
     2) Joint Return Test:              {age_test}
     3) Residence Test:                 {residence_test}
     4) Half Support Test:              {half_support_test}
