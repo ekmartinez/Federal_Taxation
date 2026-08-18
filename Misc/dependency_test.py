@@ -1,7 +1,6 @@
 import calendar
 from datetime import date
 
-
 class DependencyTest:
 
     # --- Core requirements (apply to both qualifying child and qualifying relative) ---
@@ -15,7 +14,7 @@ class DependencyTest:
         }
         failed_tests = [name for name, passed in results.items() if not passed]
         results["passed"] = len(failed_tests) == 0
-        results["failed_tests"] = failed_tests
+        results["failed_tests"] = failed_tests # type: ignore
         return results
 
     # --- Qualifying child sub-tests ---
@@ -91,7 +90,7 @@ class DependencyTest:
     def qualifying_relative_test(self, *, is_qualifying_child: bool, related: bool,
                                   member_of_household_all_year: bool, gross_income: float,
                                   taxpayer_support_percentage: float,
-                                  gross_income_limit: float = GROSS_INCOME_LIMIT_2024) -> dict:
+                                  gross_income_limit: float = GROSS_INCOME_LIMIT) -> dict:
         results = {
             "not_a_qualifying_child_test": self.qualifying_relative_not_a_qualifying_child_test(
                 is_qualifying_child
