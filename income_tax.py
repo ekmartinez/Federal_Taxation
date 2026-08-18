@@ -1,4 +1,6 @@
+import calendar
 import pandas as pd
+from datetime import date
 
 class IncomeTax:
     def __init__(self, status, age, gross_income):
@@ -74,6 +76,7 @@ class OrdinaryIncomeTax(IncomeTax):
             "marginal_tax_rate": tax_rate,
             "ordinary_tax": ordinary_tax,
         }
+
         data_return["adjusted_gross_income"] = self.gross_income - self.adjustments
         data_return["taxable_income"] = data_return["adjusted_gross_income"] - self.from_agi_deduction - self.qbi_deduction
         
@@ -209,6 +212,44 @@ class TaxMetrics(IncomeTax):
         pass
     def effective_rate(self):
         pass
+
+class DependencyTest:
+    def residence_tests(self, start_date: date, end_date: date):
+        tax_year = start_date.year
+        days_lived_with_taxpayer = (end_date - start_date).days + 1
+        days_in_tax_year = 366 if calendar.isleap(tax_year) else 365
+
+        return days_lived_with_taxpayer > days_in_tax_year / 2
+    
+    def core_dependency_test(self, citizenship_residency_test, joint_return_test):
+        core_dependency = all([citizenship_residency_test, joint_return_test])
+
+        return [core_dependency, f"""
+Core Dependency Tests:
+    1) Citizenship Residency Test:     {citizenship_residency_test}
+    2) Joint Return Test:              {joint_return_test}
+Core Dependency Results:               {core_dependency}"""]
+        
+    def qualifying_child_test(self, relationship_test, age_test, residence_test, half_support_test):
+        qualifying_child = all([relationship_test, age_test, residence_test, half_support_test])
+
+        return [qualifying_child, f"""
+Qualifying Child Tests:
+    1) Citizenship Residency Test:     {relationship_test}
+    2) Joint Return Test:              {age_test}
+    3) Residence Test:                 {residence_test}
+    4) Half Support Test:              {half_support_test}
+Qualifying Child Test Results:         {qualifying_child}"""]
+
+    def qualifying_relative_test(self, relationship_test, support_test, gross_income_test):
+        qualifying_relative = all([relationship_test, support_test, gross_income_test])
+
+        return [qualifying_relative, f"""
+Qualifying Relative Tests:
+    1) Relationship Test:              {relationship_test}
+    2) Support Test:                   {support_test}
+    3) Gross Income Test:              {gross_income_test}
+Qualifying Relative Test Results:      {qualifying_relative}"""]
 
 class IncomeTaxSummary:
     def __init__(
