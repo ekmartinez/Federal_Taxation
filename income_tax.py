@@ -226,9 +226,9 @@ class DependencyTest:
 
         return [core_dependency, f"""
 Core Dependency Tests:
-    1) Citizenship Residency Test:     {citizenship_residency_test}
+    1) Citizen or Resident Test:       {citizenship_residency_test}
     2) Joint Return Test:              {joint_return_test}
-Core Dependency Results:               {core_dependency}"""]
+Core Dependency Test Result:           {core_dependency}"""]
         
     def qualifying_child_test(self, relationship_test, age_test, residence_test, half_support_test):
         qualifying_child = all([relationship_test, age_test, residence_test, half_support_test])
@@ -236,9 +236,9 @@ Core Dependency Results:               {core_dependency}"""]
         return [qualifying_child, f"""
 Qualifying Child Tests:
     1) Relationship Test:              {relationship_test}
-    2) Joint Return Test:              {age_test}
+    2) Age Test:                       {age_test}
     3) Residence Test:                 {residence_test}
-    4) Half Support Test:              {half_support_test}
+    4) Support Test:                   {half_support_test}
 Qualifying Child Test Results:         {qualifying_child}"""]
 
     def qualifying_relative_test(self, relationship_test, support_test, gross_income_test):
