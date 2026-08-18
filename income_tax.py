@@ -1,6 +1,4 @@
-import calendar
 import pandas as pd
-from datetime import date
 
 class IncomeTax:
     def __init__(self, status, age, gross_income):
@@ -9,6 +7,7 @@ class IncomeTax:
         self.gross_income = gross_income
 
         """
+        Tax year: 2026
         "SNG": Single
         "MFJ": Married Filing Jointly
         "MFS": Married Filing Separately
@@ -279,36 +278,6 @@ class IncomeTaxSummary:
         df.isetitem(1, amount_col) # type: ignore
 
         return df
-
-class DependencyTest:
-
-    def qualifying_child_residency_test(self, start_date: date, end_date: date) -> bool:
-        if start_date > end_date:
-            raise ValueError("Start date must not be after end date.")
-
-        if start_date.year != end_date.year:
-            raise ValueError("Residency period must be within a single tax year")
-
-        tax_year = start_date.year
-        # Both the start and end dates are included in the residency period.
-        days_lived_with_taxpayer = (end_date - start_date).days + 1
-        days_in_tax_year = 366 if calendar.isleap(tax_year) else 365
-
-        return days_lived_with_taxpayer > days_in_tax_year / 2
-
-    def qualifying_child_age_test(self, age: int, taxpayer_age: int, student: bool,
-                                permanently_and_totally_disabled: bool = False) -> bool:
-        if age < 0 or taxpayer_age < 0:
-            raise ValueError("Age must not be negative.")
-
-        # No age limit applies if the person is permanently and totally disabled.
-        if permanently_and_totally_disabled:
-            return True
-
-        # Age here means age as of December 31 of the tax year.
-        is_younger_than_taxpayer = age < taxpayer_age
-        meets_age_threshold = age < 19 or (age < 24 and student)
-        return is_younger_than_taxpayer and meets_age_threshold
 
 if __name__ == "__main__":
     pass
