@@ -4,7 +4,7 @@
 
 - [Examples](03_Individual_Income_Tax_Overview_Dependents_and_Filing_Status_Examples.ipynb)
 - [Exercises](03_Individual_Income_Tax_Overview_Dependents_and_Filing_Status_Exercises.ipynb)
-- [Comprehensive Problems](03_Individual_Income_Tax_Overview_Dependents_and_Filing_Status_Exercises/Comprehensive_Problems/)
+- [Comprehensive Problems](03_Individual_income_Tax_Overview_Dependents_and_Filing_Status_Exercises/Comprehensive_Problems/)
 
 ## Overview
 
