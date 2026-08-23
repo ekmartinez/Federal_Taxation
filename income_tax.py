@@ -285,7 +285,7 @@ class IncomeTaxSummary:
     
         self.gross_income += self.capital_gains
         adjusted_gross_income = self.gross_income - self.adjustments
-        taxable_income = adjusted_gross_income - self.deduction
+        taxable_income = adjusted_gross_income - self.deduction - self.qbi_deduction
         taxable_ordinary_income = taxable_income - self.capital_gains
         total_tax = self.ordinary_tax + self.capital_gains_tax
         tax_due_refund = total_tax + self.credits + self.prepayments
