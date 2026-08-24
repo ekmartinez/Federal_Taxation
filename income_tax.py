@@ -327,5 +327,54 @@ class IncomeTaxSummary:
 
         return df
 
+class TaxableSocialSecurity:
+    def __init__(self, magi, social_security):
+        self.magi = magi
+        self.social_security = social_security
+
+        self.limits = {
+            "single": [[25000, 34000], 4500],
+            "married": [[32000, 44000], 6000],
+        }
+
+        self.fifty_pct_of_ss = self.social_security *.50
+        self.eightyfive_pct_ss = self.social_security * .85
+        self.magi_plus_fifty = self.magi + self.fifty_pct_of_ss
+        self.taxable_ss = 0
+
+    def single(self):
+        if self.magi_plus_fifty <= self.limits["single"][0][0]:
+            return self.taxable_ss
+        elif self.magi_plus_fifty > self.limits["single"][0][0] and self.magi_plus_fifty <= self.limits["single"][0][1]:
+            a = self.fifty_pct_of_ss
+            b = (self.magi_plus_fifty - self.limits["single"][0][0]) * .50
+            self.taxable_ss = min(a, b)
+            return self.taxable_ss
+        elif self.magi_plus_fifty > self.limits["single"][0][1]:
+            a = self.eightyfive_pct_ss
+            b = ((self.magi_plus_fifty - self.limits["single"][0][1]) * .85) + min(self.limits["single"][1], self.fifty_pct_of_ss)
+            self.taxable_ss = min(a, b)
+            return self.taxable_ss
+    
+    def married(self):
+        if self.magi_plus_fifty <= self.limits["married"][0][0]:
+            return self.taxable_ss
+        elif self.magi_plus_fifty > self.limits["married"][0][0] and self.magi_plus_fifty <= self.limits["married"][0][1]:
+            a = self.fifty_pct_of_ss
+            b = (self.magi_plus_fifty - self.limits["married"][0][0]) * .50
+            self.taxable_ss = min(a, b)
+            return self.taxable_ss
+        elif self.magi_plus_fifty > self.limits["married"][0][1]:
+            a = self.eightyfive_pct_ss
+            b = ((self.magi_plus_fifty - self.limits["married"][0][1]) * .85) + min(self.limits["married"][1], self.fifty_pct_of_ss)
+            self.taxable_ss = min(a, b)
+            return self.taxable_ss
+
+    def married_filling_separately(self):
+        a = self.eightyfive_pct_ss
+        b = (self.magi + self.fifty_pct_of_ss) *.85
+        self.taxable_ss = min(a, b)
+        return self.taxable_ss
+        
 if __name__ == "__main__":
     pass
