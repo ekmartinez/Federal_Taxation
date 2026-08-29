@@ -370,7 +370,7 @@ class TaxableSocialSecurity:
             self.taxable_ss = min(a, b)
             return self.taxable_ss
 
-    def married_filling_separately(self):
+    def married_filing_separately(self):
         a = self.eightyfive_pct_ss
         b = (self.magi + self.fifty_pct_of_ss) *.85
         self.taxable_ss = min(a, b)
