@@ -207,8 +207,9 @@ class TaxCredits(IncomeTax):
         return self.prepayments
 
 class TaxMetrics(IncomeTax):
-    def __init__(self, income, non_taxable_income, change):
-        super.__init__(income)
+    def __init__(self, status, taxable_income, non_taxable_income=0, change=0):
+        super.__init__(status, taxable_income)
+
         self.non_taxable_income = non_taxable_income
         self.change = change
 
@@ -375,6 +376,51 @@ class TaxableSocialSecurity:
         b = (self.magi + self.fifty_pct_of_ss) *.85
         self.taxable_ss = min(a, b)
         return self.taxable_ss
-        
+
+class EducationLoanInterestLimitation:
+    def __init__(self, status, magi, interest):
+        self.status = status
+        self.magi = magi
+        self.interest = interest
+
+        self.interest_limitation = 2500 
+        self.qualifying_status = ["SNG", "MFJ", "HOH", "QSS"]
+
+        self.thresholds = {
+            "MFJ" : [165000, 195000, 30000],
+            "NMFJ": [80000, 95000, 15000]
+        }
+
+        if self.status == "MFS":
+            return interest
+            
+    def not_married_filing_jointly(self):
+        if self.magi <= self.thresholds["NMFJ"][0]:
+            return min(self.interest, self.interest_limitation)   
+        elif self.magi > self.thresholds["NMFJ"][0] and self.magi < self.thresholds["NMFJ"][1]:
+            phase_out_pct = (self.magi - self.thresholds["NMFJ"][0]) /self.thresholds["NMFJ"][2]
+            limited_interest = min(self.interest, self.interest_limitation)   
+            return self.interest - (limited_interest * phase_out_pct)
+
+    def married_filing_jointly(self):
+        if self.magi <= self.thresholds["MFJ"][0]:
+            return min(self.interest, self.interest_limitation)   
+        elif self.magi > self.thresholds["MFJ"][0] and self.magi < self.thresholds["MFJ"][1]:
+            phase_out_pct = (self.magi - self.thresholds["MFJ"][0]) /self.thresholds["MFJ"][2]
+            limited_interest = min(self.interest, self.interest_limitation)   
+            return self.interest - (limited_interest * phase_out_pct)
+
+    def limitation(self):
+        if self.status == "MFS":
+            print("Married taxpayers filing separately are ineligible for the deduction.")
+            return self.interest
+        elif self.status == "MFJ":
+            return self.married_filing_jointly()
+
+        if self.status in self.qualifying_status:
+            return self.not_married_filing_jointly()
+        else:
+            raise ValueError("You've entered an invalid status")       
+
 if __name__ == "__main__":
     pass
