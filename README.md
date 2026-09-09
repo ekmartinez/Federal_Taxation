@@ -11,3 +11,4 @@ This repo works through the exercises from Taxation of Individuals and Business 
 2. [Tax Planning Strategies](02_Tax_Planning_Strategies/)
 3. [Individual Income Tax Overview, Dependents, and Filing Status](03_Individual_income_Tax_Overview_Dependents_and_Filing_Status/)
 4. [Gross Income And Exclusions](04_Gross_Income_And_Exclusions/)
+5. [Individual Deductions](05_Individual_Deductions/)
