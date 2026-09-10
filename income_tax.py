@@ -422,5 +422,16 @@ class EducationLoanInterestLimitation:
         else:
             raise ValueError("You've entered an invalid status")       
 
+def medical_expense_deduction(agi, med_exp):
+    agi_limitation = .075
+    floor = agi * agi_limitation
+    medical_expense_deduction = 0
+
+    if med_exp > floor:
+        medical_expense_deduction = med_exp - floor
+
+    return [medical_expense_deduction, floor]
+
+    
 if __name__ == "__main__":
     pass
