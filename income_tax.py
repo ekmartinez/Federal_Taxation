@@ -390,9 +390,6 @@ class EducationLoanInterestLimitation:
             "MFJ" : [165000, 195000, 30000],
             "NMFJ": [80000, 95000, 15000]
         }
-
-        if self.status == "MFS":
-            return interest
             
     def not_married_filing_jointly(self):
         if self.magi <= self.thresholds["NMFJ"][0]:
@@ -401,6 +398,8 @@ class EducationLoanInterestLimitation:
             phase_out_pct = (self.magi - self.thresholds["NMFJ"][0]) /self.thresholds["NMFJ"][2]
             limited_interest = min(self.interest, self.interest_limitation)   
             return self.interest - (limited_interest * phase_out_pct)
+        else:
+            return 0
 
     def married_filing_jointly(self):
         if self.magi <= self.thresholds["MFJ"][0]:
@@ -409,6 +408,8 @@ class EducationLoanInterestLimitation:
             phase_out_pct = (self.magi - self.thresholds["MFJ"][0]) /self.thresholds["MFJ"][2]
             limited_interest = min(self.interest, self.interest_limitation)   
             return self.interest - (limited_interest * phase_out_pct)
+        else:
+            return 0
 
     def limitation(self):
         if self.status == "MFS":
