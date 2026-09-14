@@ -390,38 +390,37 @@ class EducationLoanInterestLimitation:
             "MFJ" : [165000, 195000, 30000],
             "NMFJ": [80000, 95000, 15000]
         }
-            
+
     def not_married_filing_jointly(self):
         if self.magi <= self.thresholds["NMFJ"][0]:
-            return min(self.interest, self.interest_limitation)   
-        elif self.magi > self.thresholds["NMFJ"][0] and self.magi < self.thresholds["NMFJ"][1]:
-            phase_out_pct = (self.magi - self.thresholds["NMFJ"][0]) /self.thresholds["NMFJ"][2]
-            limited_interest = min(self.interest, self.interest_limitation)   
-            return self.interest - (limited_interest * phase_out_pct)
+            return min(self.interest, self.interest_limitation)
+        elif self.magi < self.thresholds["NMFJ"][1]:
+            phase_out_pct = (self.magi - self.thresholds["NMFJ"][0]) / self.thresholds["NMFJ"][2]
+            limited_interest = min(self.interest, self.interest_limitation)
+            return limited_interest - (limited_interest * phase_out_pct)
         else:
             return 0
 
     def married_filing_jointly(self):
         if self.magi <= self.thresholds["MFJ"][0]:
-            return min(self.interest, self.interest_limitation)   
-        elif self.magi > self.thresholds["MFJ"][0] and self.magi < self.thresholds["MFJ"][1]:
-            phase_out_pct = (self.magi - self.thresholds["MFJ"][0]) /self.thresholds["MFJ"][2]
-            limited_interest = min(self.interest, self.interest_limitation)   
-            return self.interest - (limited_interest * phase_out_pct)
+            return min(self.interest, self.interest_limitation)
+        elif self.magi < self.thresholds["MFJ"][1]:
+            phase_out_pct = (self.magi - self.thresholds["MFJ"][0]) / self.thresholds["MFJ"][2]
+            limited_interest = min(self.interest, self.interest_limitation)
+            return limited_interest - (limited_interest * phase_out_pct)
         else:
             return 0
 
     def limitation(self):
         if self.status == "MFS":
             print("Married taxpayers filing separately are ineligible for the deduction.")
-            return self.interest
+            return 0
         elif self.status == "MFJ":
             return self.married_filing_jointly()
-
-        if self.status in self.qualifying_status:
+        elif self.status in self.qualifying_status:
             return self.not_married_filing_jointly()
         else:
-            raise ValueError("You've entered an invalid status")       
+            raise ValueError("You've entered an invalid status")
 
 def medical_expense_deduction(agi, med_exp):
     agi_limitation = .075
