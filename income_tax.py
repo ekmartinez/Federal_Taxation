@@ -432,6 +432,81 @@ def medical_expense_deduction(agi, med_exp):
 
     return [medical_expense_deduction, floor]
 
-    
+class CharitableContributions:
+    def __init__(self, institution, agi, cash, ordinary, cap_gain):
+        self.institution = institution
+        self.agi = agi
+        self.cash = cash
+        self.ordinary = ordinary
+        self.cap_gain = cap_gain
+
+        self.cash_limit = 0
+        self.ordinary_limit = 0
+        self.cap_gain_limit = 0
+
+        self.agi_limits = {
+            "cash": [.60, .30],
+            "ordinary": [.50, .30],
+            "cap_gain": [.30, .20]
+        }
+
+        if institution == "qualified":
+            self.cash_limit = self.agi * self.agi_limits["cash"][0]
+            self.ordinary_limit = self.agi * self.agi_limits["ordinary"][0]
+            self.cap_gain_limit = self.agi * self.agi_limits["cap_gain"][0]
+        elif institution == "not_qualified":
+            self.cash_limit = self.agi * self.agi_limits["cash"][1]
+            self.ordinary_limit = self.agi * self.agi_limits["ordinary"][1]
+            self.cap_gain_limit = self.agi * self.agi_limits["cap_gain"][1]
+        else:
+            raise ValueError(f"Invalid argument {institution}")
+
+    def limitation(self):
+        remaining_agi = self.agi
+
+        cash_deduction = min(
+            self.cash,
+            self.cash_limit,
+            remaining_agi)
+
+        remaining_agi -= cash_deduction
+
+        ordinary_deduction = min(
+            self.ordinary,
+            self.ordinary_limit,
+            remaining_agi)
+
+        remaining_agi -= ordinary_deduction
+
+        cap_gain_deduction = min(
+            self.cap_gain,
+            self.cap_gain_limit,
+            remaining_agi)
+
+        remaining_agi -= cap_gain_deduction
+
+        total_deduction = (
+            cash_deduction
+            + ordinary_deduction
+            + cap_gain_deduction
+        )
+
+        cash_carryforward = self.cash - cash_deduction
+        ordinary_carryforward = self.ordinary - ordinary_deduction
+        cap_gain_carryforward = self.cap_gain - cap_gain_deduction
+
+        total_carryforward = (
+            cash_carryforward
+            + ordinary_carryforward
+            + cap_gain_carryforward
+        )
+
+        results = {
+            "deduction": total_deduction,
+            "carryforward": total_carryforward
+        }
+
+        return results
+   
 if __name__ == "__main__":
     pass
