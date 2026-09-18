@@ -433,33 +433,14 @@ def medical_expense_deduction(agi, med_exp):
     return [medical_expense_deduction, floor]
 
 class CharitableContributions:
-    def __init__(self, institution, agi, cash, ordinary, cap_gain):
-        self.institution = institution
+    def __init__(self, agi, cash, cash_limit, ordinary, ordinary_limit, cap_gain, cap_gain_limit):
         self.agi = agi
         self.cash = cash
+        self.cash_limit = cash_limit
         self.ordinary = ordinary
+        self.ordinary_limit = ordinary_limit
         self.cap_gain = cap_gain
-
-        self.cash_limit = 0
-        self.ordinary_limit = 0
-        self.cap_gain_limit = 0
-
-        self.agi_limits = {
-            "cash": [.60, .30],
-            "ordinary": [.50, .30],
-            "cap_gain": [.30, .20]
-        }
-
-        if institution == "qualified":
-            self.cash_limit = self.agi * self.agi_limits["cash"][0]
-            self.ordinary_limit = self.agi * self.agi_limits["ordinary"][0]
-            self.cap_gain_limit = self.agi * self.agi_limits["cap_gain"][0]
-        elif institution == "not_qualified":
-            self.cash_limit = self.agi * self.agi_limits["cash"][1]
-            self.ordinary_limit = self.agi * self.agi_limits["ordinary"][1]
-            self.cap_gain_limit = self.agi * self.agi_limits["cap_gain"][1]
-        else:
-            raise ValueError(f"Invalid argument {institution}")
+        self.cap_gain_limit = cap_gain_limit
 
     def limitation(self):
         remaining_agi = self.agi
@@ -509,4 +490,13 @@ class CharitableContributions:
         return results
    
 if __name__ == "__main__":
-    pass
+    agi = 200000
+    cash = 120000
+    cash_limit = agi * .60
+    ordinary_property = 50000
+    ordinary_limit = agi * .50
+    cap_gain_property = 100000
+    cap_gain_limit = agi * .30
+
+    limit = CharitableContributions(agi, cash, cash_limit, ordinary_property, ordinary_limit, cap_gain_property, cap_gain_limit)
+    print(limit.limitation())
